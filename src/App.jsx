@@ -2,20 +2,44 @@ import React, { useState } from 'react';
 import ProductList from './components/ProductList';
 
 const App = () => {
-  // TODO: Define initial product data
+ const initialProducts = [
+  { id: 1, name: "Tablet", price: 29.99, inStock: true },
+  { id: 2, name: "Phone", price: 49.99, inStock: false },
+  { id: 3, name: "Laptop", price: 19.99, inStock: true },
+]; 
 
-  // TODO: Implement state to manage filtering
+  const [products, setProducts] = useState(initialProducts);
 
-  // TODO: Implement logic to filter products based on availability
+  // REMOVE
+  const handleRemove = (id) => {
+    setProducts(products.filter((p) => p.id !== id));
+  };
+
+  // FILTER ONLY WHEN BUTTONS ARE CLICKED
+  const showInStock = () => {
+    setProducts(initialProducts.filter((p) => p.inStock));
+  };
+
+  const showOutOfStock = () => {
+    setProducts(initialProducts.filter((p) => !p.inStock));
+  };
+
+  const showAll = () => {
+    setProducts(initialProducts);
+  };
 
   return (
     <div>
-      <h1>{/* TODO: Add 'Product Dashboard' title here */}</h1>
-      
-      {/* TODO: Add buttons to allow filtering by availability */}
+      <h1>Product Dashboard</h1>
 
-      {/* TODO: Render the ProductList component and pass filtered products */}
-      
+      <button onClick={showInStock}>In Stock</button>
+      <button onClick={showOutOfStock}>Out of Stock</button>
+      <button onClick={showAll}>All Products</button>
+
+      <ProductList
+        products={products}
+        onRemove={handleRemove}
+      />
     </div>
   );
 };
