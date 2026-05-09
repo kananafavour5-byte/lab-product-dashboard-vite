@@ -4,7 +4,7 @@ import ProductCard from './ProductCard';
 const ProductList = ({ products, onRemove }) => {
   // TODO: Check if the product list is empty and display a message if needed
   if (! products || products.length === 0) {
-    return <p>No products available.</p>;
+    return <p>No products available</p>;
   }
 
   return (
